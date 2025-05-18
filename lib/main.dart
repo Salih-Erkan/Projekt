@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/all_highligts_screen.dart';
-import 'package:stammlokal/widget/food_scroll_card.dart';
+import 'package:stammlokal/widget/highlight_section.dart';
 import 'package:stammlokal/widget/info_card.dart';
+import 'package:stammlokal/widget/info_table.dart';
+import 'package:stammlokal/widget/logo.dart';
+import 'package:stammlokal/widget/main_header.dart';
+import 'package:stammlokal/widget/menu_section.dart';
 
 void main() => runApp(const StammLokalApp());
 
@@ -16,10 +19,55 @@ class StammLokalApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
+
+final List<Map<String, dynamic>> menuItems = [
+  {
+    'title': 'Pizza Margherita',
+    'subtitle': '',
+    'price': '4,50 €',
+    'popular': true,
+    'image': 'assets/images/vegetarische_pizza.png',
+  },
+  {
+    'title': 'Pizza Salami',
+    'subtitle': '',
+    'price': '5,50 €',
+    'popular': true,
+    'image': 'assets/images/vegetarische_pizza.png',
+  },
+  {
+    'title': 'Pizza Schinken',
+    'subtitle': '',
+    'price': '5,50 €',
+    'popular': false,
+    'image': 'assets/images/vegetarische_pizza.png',
+  },
+  {
+    'title': 'Pizza Thunfisch',
+    'subtitle': '',
+    'price': '5,50 €',
+    'popular': true,
+    'image': 'assets/images/vegetarische_pizza.png',
+  },
+  {
+    'title': 'Pizza Sucuk',
+    'subtitle': 'mit türkischer Knoblauchwurst',
+    'price': '5,50 €',
+    'popular': true,
+    'image': 'assets/images/vegetarische_pizza.png',
+  },
+  {
+    'title': 'Pizza Champignons',
+    'subtitle': 'mit frischen Champignons',
+    'price': '5,10 €',
+    'popular': false,
+    'image': 'assets/images/vegetarische_pizza.png',
+  },
+];
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,179 +75,39 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Column(
-        children: [
-          // 🔝 Stack mit gewölbtem Header + Logo über Wölbung
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              ClipPath(
-                clipper: BottomConcaveClipper(),
-                child: Container(
-                  height: 280,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/header_image.png'),
-                      fit: BoxFit.cover,
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(clipBehavior: Clip.none, children: [MainHeader(), Logo()]),
+            const SizedBox(height: 45),
+            InfoTable(screenWidth: screenWidth),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: const [
+                  InfoCard(
+                    text: 'Restaurant ist geöffnet',
+                    icon: Icons.check_circle_outline,
+                    textColor: Colors.green,
                   ),
-                ),
-              ),
-
-              // 🧀 Logo genau auf der Wölbung platzieren
-              Positioned(
-                bottom: -20, // überlappt die Wölbung
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: PhysicalModel(
-                    elevation: 8,
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                    shadowColor: Colors.black54,
-                    child: Container(
-                      width: 130,
-                      height: 130,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Image.asset(
-                        'assets/images/logo.png', // 🔁 dein Logo-Bild
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 45), // Platz nach dem Logo
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Container(
-              height: 100,
-              // width: 350,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  // Linker Textbereich ohne Expanded
-                  Container(
-                    width: 230, // feste Breite statt Expanded
-                    padding: const EdgeInsets.all(16),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'UP TO 40% OFF ON FIRST ORDER UP TO 40% OFF ON FIRST',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // Rechter Bildbereich
-                  ClipRRect(
-                    child: Image.asset(
-                      'assets/images/promo_image.png', // Pfad anpassen
-                      width: screenWidth * 0.25,
-                      height: screenWidth * 0.25,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  SizedBox(height: 12),
                 ],
               ),
             ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: const [
-                InfoCard(
-                  text: 'Restaurant ist geöffnet',
-                  icon: Icons.check_circle_outline,
-                  textColor: Colors.green,
-                ),
-                SizedBox(height: 12),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // Titelzeile mit Button
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Alle Highlights",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AllItemsScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text("Alle ansehen"),
-                ),
-              ],
-            ),
-          ),
-
-          // Horizontale Scroll-Liste
-          SizedBox(
-            height: 200,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: const [
-                FoodScrollCard(
-                  title: 'Pizza Margherita',
-                  price: '4,50 €',
-                  imagePath: 'assets/images/vegetarische_pizza.png',
-                ),
-                SizedBox(width: 12),
-                FoodScrollCard(
-                  title: 'Pizza Sucuk',
-                  price: '5,50 €',
-                  imagePath: 'assets/images/vegetarische_pizza.png',
-                ),
-                SizedBox(width: 12),
-                FoodScrollCard(
-                  title: 'Pizza Salami',
-                  price: '5,50 €',
-                  imagePath: 'assets/images/vegetarische_pizza.png',
-                ),
-              ],
-            ),
-          ),
-        ],
+            const SizedBox(height: 20),
+            const HighlightSection(),
+            const SizedBox(height: 36),
+            MenuSection(items: menuItems),
+          ],
+        ),
       ),
     );
   }
 }
 
-// 🎯 CustomClipper für nach innen gewölbte Unterkante
 class BottomConcaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
