@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/highligts_detail_screen.dart';
+import 'package:stammlokal/src/features/home/highligts_detail_screen.dart';
 
-class FoodScrollCard extends StatelessWidget {
+class highlightCard extends StatelessWidget {
   final String title;
   final String price;
   final String imagePath;
 
-  const FoodScrollCard({
+  const highlightCard({
     super.key,
     required this.title,
     required this.price,
@@ -38,13 +38,7 @@ class FoodScrollCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

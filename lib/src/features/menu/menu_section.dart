@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/widget/category_chip.dart';
+import 'package:stammlokal/src/features/home/widget/category_chip.dart';
 
 class MenuSection extends StatelessWidget {
   final List<Map<String, dynamic>> items;
@@ -12,32 +12,23 @@ class MenuSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Text(
             "Speisekarte",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "Alle Kategorien",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-        ),
         SizedBox(
           height: 50,
+
           child: ListView(
+            clipBehavior: Clip.none,
+
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: const [
               CategoryChip(
-                icon: Icons.local_fire_department,
+                imagePath: 'assets/images/icons/fire.png',
                 label: "Alle",
                 selected: true,
               ),
@@ -63,11 +54,12 @@ class MenuSection extends StatelessWidget {
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
+          padding: const EdgeInsets.only(top: 16),
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -75,7 +67,7 @@ class MenuSection extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
-                      blurRadius: 4,
+                      blurRadius: 2,
                       offset: const Offset(0, 2),
                     ),
                   ],

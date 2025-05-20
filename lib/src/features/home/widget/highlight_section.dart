@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/all_highligts_screen.dart';
-import 'package:stammlokal/widget/food_scroll_card.dart';
+import 'package:stammlokal/src/features/home/all_highligts_screen.dart';
+import 'package:stammlokal/src/features/home/widget/food_scroll_card.dart';
 
 class HighlightSection extends StatelessWidget {
   const HighlightSection({super.key});
@@ -37,22 +37,23 @@ class HighlightSection extends StatelessWidget {
         SizedBox(
           height: 200,
           child: ListView(
+            clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: const [
-              FoodScrollCard(
+              highlightCard(
                 title: 'Pizza Margherita',
                 price: '4,50 €',
                 imagePath: 'assets/images/vegetarische_pizza.png',
               ),
               SizedBox(width: 12),
-              FoodScrollCard(
+              highlightCard(
                 title: 'Pizza Sucuk',
                 price: '5,50 €',
                 imagePath: 'assets/images/vegetarische_pizza.png',
               ),
               SizedBox(width: 12),
-              FoodScrollCard(
+              highlightCard(
                 title: 'Pizza Salami',
                 price: '5,50 €',
                 imagePath: 'assets/images/vegetarische_pizza.png',

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/widget/highlight_section.dart';
-import 'package:stammlokal/widget/info_card.dart';
-import 'package:stammlokal/widget/info_table.dart';
-import 'package:stammlokal/widget/logo.dart';
-import 'package:stammlokal/widget/main_header.dart';
-import 'package:stammlokal/widget/menu_section.dart';
+import 'package:stammlokal/src/features/home/widget/highlight_section.dart';
+import 'package:stammlokal/src/features/home/widget/info_card.dart';
+import 'package:stammlokal/src/features/home/widget/info_table.dart';
+import 'package:stammlokal/src/features/home/widget/logo.dart';
+import 'package:stammlokal/src/features/home/widget/main_header.dart';
+import 'package:stammlokal/src/features/menu/menu_section.dart';
 
 void main() => runApp(const StammLokalApp());
 

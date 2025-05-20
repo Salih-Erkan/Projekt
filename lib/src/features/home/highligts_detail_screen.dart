@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/cart_service.dart';
+import 'package:stammlokal/src/features/home/cart_service.dart';
 
 class FoodDetailOverlay extends StatefulWidget {
   final String title;

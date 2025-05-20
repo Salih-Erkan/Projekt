@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stammlokal/widget/food_scroll_card.dart';
+import 'package:stammlokal/src/features/home/widget/food_scroll_card.dart';
 
 class AllItemsScreen extends StatefulWidget {
   const AllItemsScreen({super.key});
@@ -156,7 +156,7 @@ class _AllItemsScreenState extends State<AllItemsScreen> {
                     itemBuilder: (context, index) {
                       final item = filteredItems[index];
                       return SizedBox(
-                        child: FoodScrollCard(
+                        child: highlightCard(
                           title: item['title']!,
                           price: item['price']!,
                           imagePath: item['imagePath']!,

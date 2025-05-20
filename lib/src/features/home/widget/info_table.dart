@@ -25,7 +25,7 @@ class InfoTable extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'UP TO 40% OFF ON FIRST ORDER UP TO 40% OFF ON FIRST',
+                    'UP TO 40% OFF ON FIRST ORDER UP TO %40 OFF ON FIRST',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
